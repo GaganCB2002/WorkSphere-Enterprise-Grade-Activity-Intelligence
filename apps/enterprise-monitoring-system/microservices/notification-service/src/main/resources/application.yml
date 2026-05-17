@@ -1,0 +1,22 @@
+﻿server:
+  port: 8086
+  servlet:
+    context-path: /api/v1/notification
+
+spring:
+  application:
+    name: notification-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/worksphere_notification
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics

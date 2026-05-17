@@ -1,0 +1,22 @@
+﻿server:
+  port: 8089
+  servlet:
+    context-path: /api/v1/report
+
+spring:
+  application:
+    name: report-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/worksphere_report
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics

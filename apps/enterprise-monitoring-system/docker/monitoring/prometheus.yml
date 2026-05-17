@@ -1,0 +1,13 @@
+﻿global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'worksphere-gateway'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['gateway-service:8080']
+
+  - job_name: 'worksphere-auth'
+    metrics_path: '/api/v1/auth/actuator/prometheus'
+    static_configs:
+      - targets: ['auth-service:8081']

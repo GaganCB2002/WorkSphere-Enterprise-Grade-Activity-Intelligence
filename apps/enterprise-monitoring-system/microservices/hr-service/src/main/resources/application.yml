@@ -1,0 +1,22 @@
+﻿server:
+  port: 8083
+  servlet:
+    context-path: /api/v1/hr
+
+spring:
+  application:
+    name: hr-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/worksphere_hr
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics

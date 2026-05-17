@@ -1,0 +1,18 @@
+﻿spring:
+  datasource:
+    url: jdbc:postgresql://\:5432/\
+    username: \
+    password: \
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+  data:
+    redis:
+      host: \
+      port: \
+  kafka:
+    bootstrap-servers: \
+    consumer:
+      group-id: worksphere-prod-group

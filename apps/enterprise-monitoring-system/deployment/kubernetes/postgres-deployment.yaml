@@ -1,0 +1,50 @@
+﻿apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: worksphere-postgres
+  namespace: worksphere-prod
+spec:
+  serviceName: worksphere-postgres
+  replicas: 1
+  selector:
+    matchLabels:
+      app: worksphere-postgres
+  template:
+    metadata:
+      labels:
+        app: worksphere-postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:15-alpine
+          env:
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: password
+            - name: POSTGRES_DB
+              value: worksphere_enterprise
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: pgdata
+              mountPath: /var/lib/postgresql/data
+  volumeClaimTemplates:
+    - metadata:
+        name: pgdata
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 50Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: worksphere-postgres
+  namespace: worksphere-prod
+spec:
+  ports:
+    - port: 5432
+  selector:
+    app: worksphere-postgres
